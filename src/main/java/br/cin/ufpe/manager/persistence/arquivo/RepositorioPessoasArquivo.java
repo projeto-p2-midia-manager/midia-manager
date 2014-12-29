@@ -2,6 +2,9 @@ package br.cin.ufpe.manager.persistence.arquivo;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import br.cin.ufpe.manager.IRepositorio;
 import br.cin.ufpe.manager.entity.Pessoa;
 import br.cin.ufpe.manager.exception.PessoaNaoEncontradaException;
@@ -10,39 +13,44 @@ import br.cin.ufpe.manager.util.FileHandler;
 public class RepositorioPessoasArquivo implements IRepositorio<Pessoa> {
 
 	private final String nomeArquivo = "pessoas.txt";
+	private FileHandler fh = new FileHandler();
 	private List<Pessoa> pessoas;
+	private static Logger log = LoggerFactory.getLogger(RepositorioPessoasArquivo.class);
 	
 	public RepositorioPessoasArquivo() {
-		FileHandler fh = new FileHandler();
 		this.pessoas = fh.carregarDadosPessoa(nomeArquivo);
 	}
 	
 	public List<Pessoa> listar() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.pessoas;
 	}
 
 	public void inserir(Pessoa p) {
-		// TODO Auto-generated method stub
-		
+		this.pessoas.add(p);
+		fh.escreverPessoasNoArquivo(nomeArquivo, pessoas);
 	}
 
 	public void remover(Pessoa p) throws PessoaNaoEncontradaException {
 		Pessoa pessoa = buscarPorId(p.getId());
 		pessoas.remove(pessoa);
+		fh.escreverPessoasNoArquivo(nomeArquivo, pessoas);
 	}
 
-	public void atualizar(Pessoa t) {
-		// TODO Auto-generated method stub
-		
+	public void atualizar(Pessoa p) {
+		Pessoa pessoa = buscarPorId(p.getId());
+		pessoas.remove(pessoa);
+		pessoas.add(p);
+		fh.escreverPessoasNoArquivo(nomeArquivo, pessoas);
 	}
 
-	public Pessoa buscarPorId(Long id) throws PessoaNaoEncontradaException {
-		Pessoa pessoa = pessoas.get(pessoas.indexOf(id));
-		if(pessoa==null){
-			throw new PessoaNaoEncontradaException(id);	
+	public Pessoa buscarPorId(Long id) {
+		for(Pessoa p : pessoas){
+			if(p.getId()==id){
+				return p;
+			}
 		}
-		return pessoa;
+		log.info("ID " + id + " nao encontrado na lista de pessoas.");
+		return null;
 	}
 
 	public List<Pessoa> getPessoas() {

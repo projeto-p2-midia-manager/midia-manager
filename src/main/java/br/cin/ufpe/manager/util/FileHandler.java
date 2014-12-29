@@ -106,20 +106,35 @@ public class FileHandler {
 		return lista;
 	}
 
-	public void escreverNoArquivo(String nomeArq, List<Object> dados){
-		File f = new File(nomeArq);
+	public void escreverPessoasNoArquivo(String nomeArquivo, List<Pessoa> pessoas) {
+		File f = new File(nomeArquivo);
 		FileWriter fw;
 		BufferedWriter bw;
 		try {
 			fw = new FileWriter(f);
 			bw = new BufferedWriter(fw);
-			for (Object object : dados) {
-				bw.write(object.toString());
+			for (Pessoa p : pessoas) {
+				bw.write(p.toString());
 			}
 		} catch (IOException e) {
 			log.error("Erro ao gravar no arquivo.");
-		}
+		}		
+	}
 
+	public void escreverMidiasNoArquivo(String nomeArquivo, List<Midia> midias) {
+		File f = new File(nomeArquivo);
+		FileWriter fw;
+		BufferedWriter bw;
+		try {
+			fw = new FileWriter(f);
+			bw = new BufferedWriter(fw);
+			for (Midia m : midias) {
+				bw.write(m.toString());
+			}
+		} catch (IOException e) {
+			log.error("Erro ao gravar no arquivo.");
+		}		
+		
 	}
 
 }
