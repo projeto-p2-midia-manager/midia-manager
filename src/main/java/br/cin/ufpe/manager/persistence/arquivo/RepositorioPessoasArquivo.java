@@ -5,9 +5,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.cin.ufpe.manager.IRepositorio;
 import br.cin.ufpe.manager.entity.Pessoa;
 import br.cin.ufpe.manager.exception.PessoaNaoEncontradaException;
+import br.cin.ufpe.manager.interfaces.IRepositorio;
 import br.cin.ufpe.manager.util.FileHandler;
 
 public class RepositorioPessoasArquivo implements IRepositorio<Pessoa> {

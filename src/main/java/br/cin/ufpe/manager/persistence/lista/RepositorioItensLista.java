@@ -2,8 +2,8 @@ package br.cin.ufpe.manager.persistence.lista;
 
 import java.util.List;
 
-import br.cin.ufpe.manager.IRepositorio;
 import br.cin.ufpe.manager.entity.ItemBackup;
+import br.cin.ufpe.manager.interfaces.IRepositorio;
 
 public class RepositorioItensLista implements IRepositorio<ItemBackup> {
 

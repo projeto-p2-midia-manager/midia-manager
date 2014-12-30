@@ -3,8 +3,8 @@ package br.cin.ufpe.manager.persistence.lista;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.cin.ufpe.manager.IRepositorio;
 import br.cin.ufpe.manager.entity.Midia;
+import br.cin.ufpe.manager.interfaces.IRepositorio;
 
 public class RepositorioMidiasLista implements IRepositorio<Midia> {
 	

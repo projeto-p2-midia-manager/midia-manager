@@ -2,8 +2,8 @@ package br.cin.ufpe.manager.persistence.bd;
 
 import java.util.List;
 
-import br.cin.ufpe.manager.IRepositorio;
 import br.cin.ufpe.manager.entity.Pessoa;
+import br.cin.ufpe.manager.interfaces.IRepositorio;
 
 public class RepositorioPessoasBD implements IRepositorio<Pessoa> {
 

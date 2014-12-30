@@ -2,21 +2,36 @@ package br.cin.ufpe.manager.persistence.vetor;
 
 import java.util.List;
 
-import br.cin.ufpe.manager.IRepositorio;
 import br.cin.ufpe.manager.entity.Midia;
+import br.cin.ufpe.manager.interfaces.IRepositorio;
+import br.cin.ufpe.manager.interfaces.IRepositorioVetor;
 
-public class RepositorioMidiasVetor implements IRepositorio<Midia> {
+public class RepositorioMidiasVetor implements IRepositorioVetor<Midia> {
 	
-	private Midia[] midias;
-
-	public List<Midia> listar() {
-		// TODO Auto-generated method stub
-		return null;
+	private Midia[] midias = new Midia[10];
+	private double loadFactor;
+	private static int pos = 0;
+	
+	private void duplicarCapacidade(){
+		pos = 0;
+		Midia[] temp = new Midia[midias.length*2];
+		for (int i = 0; i < midias.length; i++) {
+			temp[i] = midias[i];
+			pos = pos+1;
+		}
+		midias = temp;
+	}
+	
+	public Midia[] listar(){
+		return midias;
 	}
 
 	public void inserir(Midia t) {
-		// TODO Auto-generated method stub
-		
+		if(loadFactor >= 0.75){
+			duplicarCapacidade();
+		}
+		pos = pos+1;
+		loadFactor = pos/midias.length;
 	}
 
 	public void remover(Midia t) {
@@ -30,17 +45,7 @@ public class RepositorioMidiasVetor implements IRepositorio<Midia> {
 	}
 
 	public Midia buscarPorId(Long id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public Midia[] getMidias() {
-		return midias;
-	}
-
-	public void setMidias(Midia[] midias) {
-		this.midias = midias;
-	}
-
 
 }

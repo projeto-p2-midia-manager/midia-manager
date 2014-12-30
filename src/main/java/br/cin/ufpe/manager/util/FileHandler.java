@@ -134,7 +134,22 @@ public class FileHandler {
 		} catch (IOException e) {
 			log.error("Erro ao gravar no arquivo.");
 		}		
-		
 	}
+	
+	public void escreverItensNoArquivo(String nomeArquivo, List<ItemBackup> itens) {
+		File f = new File(nomeArquivo);
+		FileWriter fw;
+		BufferedWriter bw;
+		try {
+			fw = new FileWriter(f);
+			bw = new BufferedWriter(fw);
+			for (ItemBackup it : itens) {
+				bw.write(it.toString());
+			}
+		} catch (IOException e) {
+			log.error("Erro ao gravar no arquivo.");
+		}		
+	}
+	
 
 }

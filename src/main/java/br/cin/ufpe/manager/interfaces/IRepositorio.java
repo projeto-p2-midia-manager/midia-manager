@@ -1,4 +1,4 @@
-package br.cin.ufpe.manager;
+package br.cin.ufpe.manager.interfaces;
 
 import java.util.List;
 

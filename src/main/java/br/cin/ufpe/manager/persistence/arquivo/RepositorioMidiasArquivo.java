@@ -5,9 +5,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.cin.ufpe.manager.IRepositorio;
 import br.cin.ufpe.manager.entity.Midia;
 import br.cin.ufpe.manager.exception.MidiaNaoEncontradaException;
+import br.cin.ufpe.manager.interfaces.IRepositorio;
 import br.cin.ufpe.manager.util.FileHandler;
 
 public class RepositorioMidiasArquivo implements IRepositorio<Midia> {

@@ -1,5 +1,7 @@
 package br.cin.ufpe.manager.business;
 
+import java.util.List;
+
 import br.cin.ufpe.manager.entity.Pessoa;
 import br.cin.ufpe.manager.entity.TipoRepositorio;
 import br.cin.ufpe.manager.exception.PessoaNaoEncontradaException;
@@ -70,5 +72,17 @@ public class ControladorPessoa {
 		}				
 	}
 
+	public List<Pessoa> listar(){
+		if(repositorio instanceof RepositorioManagerArquivo){
+			return ((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().listar();
+		} else if(repositorio instanceof RepositorioManagerBD){
+			return ((RepositorioManagerBD) this.repositorio).getRepositorioPessoasBD().listar();
+		} else if(repositorio instanceof RepositorioManagerLista){
+			return ((RepositorioManagerLista) this.repositorio).getRepositorioPessoasLista().listar();
+		} else if(repositorio instanceof RepositorioManagerVetor) {
+			return ((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().listar();
+		}
+		return null;
+	}
 
 }
