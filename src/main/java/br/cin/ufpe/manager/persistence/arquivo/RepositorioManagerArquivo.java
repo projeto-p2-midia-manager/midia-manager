@@ -9,7 +9,9 @@ public class RepositorioManagerArquivo extends RepositorioManager {
 	private RepositorioItensArquivo repositorioItensArquivo;
 	
 	public RepositorioManagerArquivo(){
+		this.repositorioItensArquivo = new RepositorioItensArquivo();
 		this.repositorioMidiasArquivo = new RepositorioMidiasArquivo();
+		this.repositorioPessoasArquivo = new RepositorioPessoasArquivo();
 	}
 	
 	public RepositorioMidiasArquivo getRepositorioMidiasArquivo() {
@@ -26,10 +28,6 @@ public class RepositorioManagerArquivo extends RepositorioManager {
 
 	public RepositorioItensArquivo getRepositorioItensArquivo() {
 		return repositorioItensArquivo;
-	}
-
-	public void setRepositorioItensArquivo(RepositorioItensArquivo repositorioItensArquivo) {
-		this.repositorioItensArquivo = repositorioItensArquivo;
 	}
 
 }

@@ -4,9 +4,15 @@ import br.cin.ufpe.manager.persistence.RepositorioManager;
 
 public class RepositorioManagerBD extends RepositorioManager {
 
-	private RepositorioMidiasBD repositorioMidiasBD = new RepositorioMidiasBD();
-	private RepositorioPessoasBD repositorioPessoasBD = new RepositorioPessoasBD();
-	private RepositorioItensBD repositorioItensBD = new RepositorioItensBD();
+	private RepositorioMidiasBD repositorioMidiasBD;
+	private RepositorioPessoasBD repositorioPessoasBD;
+	private RepositorioItensBD repositorioItensBD;
+	
+	public RepositorioManagerBD(){
+		this.repositorioItensBD = new RepositorioItensBD();
+		this.repositorioMidiasBD = new RepositorioMidiasBD();
+		this.repositorioPessoasBD = new RepositorioPessoasBD();
+	}
 	
 	public RepositorioMidiasBD getRepositorioMidiasBD(){
 		return this.repositorioMidiasBD;

@@ -7,6 +7,12 @@ public class RepositorioManagerVetor extends RepositorioManager {
 	private RepositorioMidiasVetor repositorioMidiasVetor;
 	private RepositorioItensVetor repositorioItensVetor;
 	private RepositorioPessoasVetor repositorioPessoasVetor;
+	
+	public RepositorioManagerVetor(){
+		this.repositorioItensVetor = new RepositorioItensVetor();
+		this.repositorioMidiasVetor = new RepositorioMidiasVetor();
+		this.repositorioPessoasVetor = new RepositorioPessoasVetor();
+	}	
 
 	public RepositorioItensVetor getRepositorioItensVetor() {
 		return repositorioItensVetor;

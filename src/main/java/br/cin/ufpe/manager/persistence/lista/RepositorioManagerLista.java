@@ -8,6 +8,12 @@ public class RepositorioManagerLista extends RepositorioManager {
 	private RepositorioPessoasLista repositorioPessoasLista;
 	private RepositorioItensLista repositorioItensLista;
 	
+	public RepositorioManagerLista(){
+		this.repositorioItensLista = new RepositorioItensLista();
+		this.repositorioMidiasLista = new RepositorioMidiasLista();
+		this.repositorioPessoasLista = new RepositorioPessoasLista();
+	}
+	
 	public RepositorioMidiasLista getRepositorioMidiasLista(){
 		return repositorioMidiasLista;
 	}
