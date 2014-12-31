@@ -1,13 +1,11 @@
 package br.cin.ufpe.manager.persistence.vetor;
 
-import java.util.List;
-
 import br.cin.ufpe.manager.entity.Pessoa;
-import br.cin.ufpe.manager.interfaces.IRepositorio;
+import br.cin.ufpe.manager.interfaces.IRepositorioVetor;
 
-public class RepositorioPessoasVetor implements IRepositorio<Pessoa> {
+public class RepositorioPessoasVetor implements IRepositorioVetor<Pessoa> {
 
-	public List<Pessoa> listar() {
+	public Pessoa[] listar() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -17,7 +15,7 @@ public class RepositorioPessoasVetor implements IRepositorio<Pessoa> {
 		
 	}
 
-	public void remover(Pessoa t) {
+	public void remover(Pessoa t) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
@@ -27,9 +25,10 @@ public class RepositorioPessoasVetor implements IRepositorio<Pessoa> {
 		
 	}
 
-	public Pessoa buscarPorId(Long id) {
+	public int buscarPorId(Long id) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
+
 
 }

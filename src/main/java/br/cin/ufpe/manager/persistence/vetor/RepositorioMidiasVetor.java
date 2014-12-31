@@ -1,23 +1,21 @@
 package br.cin.ufpe.manager.persistence.vetor;
 
-import java.util.List;
-
 import br.cin.ufpe.manager.entity.Midia;
-import br.cin.ufpe.manager.interfaces.IRepositorio;
+import br.cin.ufpe.manager.exception.MidiaNaoEncontradaException;
 import br.cin.ufpe.manager.interfaces.IRepositorioVetor;
 
 public class RepositorioMidiasVetor implements IRepositorioVetor<Midia> {
 	
 	private Midia[] midias = new Midia[10];
 	private double loadFactor;
-	private static int pos = 0;
+	private static int indice = 0;
 	
 	private void duplicarCapacidade(){
-		pos = 0;
+		indice = 0;
 		Midia[] temp = new Midia[midias.length*2];
 		for (int i = 0; i < midias.length; i++) {
 			temp[i] = midias[i];
-			pos = pos+1;
+			indice = indice+1;
 		}
 		midias = temp;
 	}
@@ -30,22 +28,41 @@ public class RepositorioMidiasVetor implements IRepositorioVetor<Midia> {
 		if(loadFactor >= 0.75){
 			duplicarCapacidade();
 		}
-		pos = pos+1;
-		loadFactor = pos/midias.length;
+		indice = indice+1;
+		loadFactor = indice/midias.length;
+		midias[indice] = t;
 	}
 
-	public void remover(Midia t) {
-		// TODO Auto-generated method stub
-		
+	public void remover(Midia m) throws MidiaNaoEncontradaException {
+		int posicao = buscarPorId(m.getId());
+		if(posicao==-1){
+			throw new MidiaNaoEncontradaException(m.getId());
+		}
+		midias[posicao] = null;
+		reordenarVetor();
 	}
 
-	public void atualizar(Midia t) {
-		// TODO Auto-generated method stub
-		
+	private void reordenarVetor() {
+		for (int posAtual = 0; posAtual < indice; posAtual++) {
+			if(midias[posAtual]==null && posAtual < indice){
+				midias[posAtual] = midias[posAtual+1]; 
+			}
+		}
+		indice=indice-1;
 	}
 
-	public Midia buscarPorId(Long id) {
-		return null;
+	public void atualizar(Midia midiaAtualizada) {
+		int p = buscarPorId(midiaAtualizada.getId());
+		midias[p] = midiaAtualizada;
+	}
+
+	public int buscarPorId(Long id) {
+		for (int i = 0; i < indice; i++) {
+			if(midias[i].getId()==id){
+				return i;
+			}
+		}
+		return -1;
 	}
 
 }

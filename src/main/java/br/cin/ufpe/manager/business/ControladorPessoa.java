@@ -1,5 +1,6 @@
 package br.cin.ufpe.manager.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.cin.ufpe.manager.entity.Pessoa;
@@ -80,7 +81,12 @@ public class ControladorPessoa {
 		} else if(repositorio instanceof RepositorioManagerLista){
 			return ((RepositorioManagerLista) this.repositorio).getRepositorioPessoasLista().listar();
 		} else if(repositorio instanceof RepositorioManagerVetor) {
-			return ((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().listar();
+			Pessoa[] vetor = ((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().listar();
+			List<Pessoa> lista = new ArrayList<Pessoa>();
+			for (int i = 0; i < vetor.length; i++) {
+				lista.add(vetor[i]);
+			}
+			return lista;
 		}
 		return null;
 	}

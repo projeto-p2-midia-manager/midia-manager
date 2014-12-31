@@ -7,6 +7,6 @@ public interface IRepositorioVetor<T> {
 	public void inserir(T t);
 	public void remover(T t) throws Exception;
 	public void atualizar(T t);
-	public T buscarPorId(Long id) throws Exception;	
+	public int buscarPorId(Long id) throws Exception;	
 
 }
