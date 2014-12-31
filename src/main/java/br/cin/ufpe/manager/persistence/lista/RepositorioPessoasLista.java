@@ -1,5 +1,6 @@
 package br.cin.ufpe.manager.persistence.lista;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.cin.ufpe.manager.entity.Pessoa;
@@ -7,29 +8,38 @@ import br.cin.ufpe.manager.interfaces.IRepositorio;
 
 public class RepositorioPessoasLista implements IRepositorio<Pessoa> {
 
+	private List<Pessoa> itens;
+	
+	public RepositorioPessoasLista(){
+		this.itens = new ArrayList<Pessoa>();
+	}
+	
 	public List<Pessoa> listar() {
-		// TODO Auto-generated method stub
-		return null;
+		return itens;
 	}
 
-	public void inserir(Pessoa t) {
-		// TODO Auto-generated method stub
-		
+	public void inserir(Pessoa i) {
+		itens.add(i);
 	}
 
-	public void remover(Pessoa t) {
-		// TODO Auto-generated method stub
-		
+	public void remover(Pessoa i) {
+		itens.remove(i);
 	}
 
-	public void atualizar(Pessoa t) {
-		// TODO Auto-generated method stub
-		
+	public void atualizar(Pessoa i) {
+		Pessoa pessoaAnterior = buscarPorId(i.getId());
+		itens.remove(pessoaAnterior);
+		itens.add(i);
 	}
 
 	public Pessoa buscarPorId(Long id) {
-		// TODO Auto-generated method stub
+		for (Pessoa p : itens) {
+			if(p.getId()==id){
+				return p;
+			}
+		}
 		return null;
 	}
+
 
 }
