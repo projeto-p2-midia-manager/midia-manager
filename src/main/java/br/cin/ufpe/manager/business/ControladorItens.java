@@ -25,7 +25,8 @@ public class ControladorItens {
 	}
 	
 	private void carregarRepositorio(TipoRepositorio tipoRepositorio) {
-		this.setRepositorio(FabricaTipoRepositorio.getRepositorio(tipoRepositorio));		
+		FabricaTipoRepositorio fabrica = new FabricaTipoRepositorio();
+		this.setRepositorio(fabrica.getRepositorio(tipoRepositorio));		
 	}
 
 	public RepositorioManager getRepositorio() {

@@ -13,6 +13,12 @@ import br.cin.ufpe.manager.persistence.lista.RepositorioManagerLista;
 import br.cin.ufpe.manager.persistence.vetor.RepositorioManagerVetor;
 import br.cin.ufpe.manager.util.FabricaTipoRepositorio;
 
+/***
+ * 
+ * @author Fagner Fernandes
+ * Classe de negocio responsavel por manipular as operacoes de CRUD da classe Pessoa
+ *
+ */
 public class ControladorPessoa {
 	
 	private RepositorioManager repositorio;
@@ -26,7 +32,8 @@ public class ControladorPessoa {
 	}
 	
 	private void carregarRepositorio(TipoRepositorio tipoRepositorio) {
-		this.setRepositorio(FabricaTipoRepositorio.getRepositorio(tipoRepositorio));		
+		FabricaTipoRepositorio fabrica = new FabricaTipoRepositorio();
+		this.setRepositorio(fabrica.getRepositorio(tipoRepositorio));		
 	}
 
 	public RepositorioManager getRepositorio() {
@@ -35,18 +42,6 @@ public class ControladorPessoa {
 
 	public void setRepositorio(RepositorioManager repositorio) {
 		this.repositorio = repositorio;
-	}
-	
-	public void inserirNovaPessoa(Pessoa p){
-		if(repositorio instanceof RepositorioManagerArquivo){
-			((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().inserir(p);
-		} else if(repositorio instanceof RepositorioManagerBD){
-			((RepositorioManagerBD) this.repositorio).getRepositorioPessoasBD().inserir(p);
-		} else if(repositorio instanceof RepositorioManagerLista){
-			((RepositorioManagerLista) this.repositorio).getRepositorioPessoasLista().inserir(p);
-		} else if(repositorio instanceof RepositorioManagerVetor) {
-			((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().inserir(p);
-		}
 	}
 	
 	public void atualizarPessoa(Pessoa p) {
@@ -61,16 +56,34 @@ public class ControladorPessoa {
 		}		
 	}
 	
-	public void removerPessoa(Pessoa p) throws PessoaNaoEncontradaException {
+	public Pessoa buscarPessoa(Long id){
 		if(repositorio instanceof RepositorioManagerArquivo){
-			((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().remover(p);
+			return ((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().buscarPorId(id);
 		} else if(repositorio instanceof RepositorioManagerBD){
-			((RepositorioManagerBD) this.repositorio).getRepositorioPessoasBD().atualizar(p);
+			return ((RepositorioManagerBD) this.repositorio).getRepositorioPessoasBD().buscarPorId(id);
 		} else if(repositorio instanceof RepositorioManagerLista){
-			((RepositorioManagerLista) this.repositorio).getRepositorioPessoasLista().atualizar(p);
+			return ((RepositorioManagerLista) this.repositorio).getRepositorioPessoasLista().buscarPorId(id);
 		} else if(repositorio instanceof RepositorioManagerVetor) {
-			((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().atualizar(p);
-		}				
+			Pessoa[] vetor = ((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().listar();
+			for (int i = 0; i < vetor.length; i++) {
+				if(vetor[i].getId().equals(id)){
+					return vetor[i];
+				}
+			}
+		}
+		return null;		
+	}
+	
+	public void inserirNovaPessoa(Pessoa p){
+		if(repositorio instanceof RepositorioManagerArquivo){
+			((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().inserir(p);
+		} else if(repositorio instanceof RepositorioManagerBD){
+			((RepositorioManagerBD) this.repositorio).getRepositorioPessoasBD().inserir(p);
+		} else if(repositorio instanceof RepositorioManagerLista){
+			((RepositorioManagerLista) this.repositorio).getRepositorioPessoasLista().inserir(p);
+		} else if(repositorio instanceof RepositorioManagerVetor) {
+			((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().inserir(p);
+		}
 	}
 
 	public List<Pessoa> listar(){
@@ -89,6 +102,19 @@ public class ControladorPessoa {
 			return lista;
 		}
 		return null;
+	}	
+	
+	public void removerPessoa(Pessoa p) throws PessoaNaoEncontradaException {
+		if(repositorio instanceof RepositorioManagerArquivo){
+			((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().remover(p);
+		} else if(repositorio instanceof RepositorioManagerBD){
+			((RepositorioManagerBD) this.repositorio).getRepositorioPessoasBD().remover(p);;
+		} else if(repositorio instanceof RepositorioManagerLista){
+			((RepositorioManagerLista) this.repositorio).getRepositorioPessoasLista().remover(p);
+		} else if(repositorio instanceof RepositorioManagerVetor) {
+			((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().remover(p);
+		}				
 	}
+
 
 }

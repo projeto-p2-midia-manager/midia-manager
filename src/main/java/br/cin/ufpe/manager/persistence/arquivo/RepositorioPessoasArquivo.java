@@ -45,7 +45,7 @@ public class RepositorioPessoasArquivo implements IRepositorio<Pessoa> {
 
 	public Pessoa buscarPorId(Long id) {
 		for(Pessoa p : pessoas){
-			if(p.getId()==id){
+			if(p.getId().equals(id)){
 				return p;
 			}
 		}

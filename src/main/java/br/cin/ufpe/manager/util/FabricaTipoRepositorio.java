@@ -12,16 +12,17 @@ import br.cin.ufpe.manager.persistence.vetor.RepositorioManagerVetor;
 
 public class FabricaTipoRepositorio {
 	
-	private static Map<TipoRepositorio, RepositorioManager> mapasRepo = new HashMap<TipoRepositorio, RepositorioManager>();
+	private Map<TipoRepositorio, RepositorioManager> mapasRepo;
 	
 	public FabricaTipoRepositorio(){
-		mapasRepo.put(TipoRepositorio.ARQUIVO, new RepositorioManagerArquivo());
-		mapasRepo.put(TipoRepositorio.BD, new RepositorioManagerBD());
-		mapasRepo.put(TipoRepositorio.LISTA, new RepositorioManagerLista());
-		mapasRepo.put(TipoRepositorio.VETOR, new RepositorioManagerVetor());
+		this.mapasRepo = new HashMap<TipoRepositorio, RepositorioManager>();
+		this.mapasRepo.put(TipoRepositorio.ARQUIVO, new RepositorioManagerArquivo());
+		this.mapasRepo.put(TipoRepositorio.BD, new RepositorioManagerBD());
+		this.mapasRepo.put(TipoRepositorio.LISTA, new RepositorioManagerLista());
+		this.mapasRepo.put(TipoRepositorio.VETOR, new RepositorioManagerVetor());
 	}
 	
-	public static RepositorioManager getRepositorio(TipoRepositorio tipoRepositorio) {
+	public RepositorioManager getRepositorio(TipoRepositorio tipoRepositorio) {
 		return mapasRepo.get(tipoRepositorio);
 	}
 

@@ -34,12 +34,11 @@ public class RepositorioPessoasLista implements IRepositorio<Pessoa> {
 
 	public Pessoa buscarPorId(Long id) {
 		for (Pessoa p : itens) {
-			if(p.getId()==id){
+			if(p.getId().equals(id)){
 				return p;
 			}
 		}
 		return null;
 	}
-
 
 }
