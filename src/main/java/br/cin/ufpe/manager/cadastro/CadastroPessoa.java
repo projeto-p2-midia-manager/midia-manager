@@ -1,4 +1,4 @@
-package br.cin.ufpe.manager.business;
+package br.cin.ufpe.manager.cadastro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +19,15 @@ import br.cin.ufpe.manager.util.FabricaTipoRepositorio;
  * Classe de negocio responsavel por manipular as operacoes de CRUD da classe Pessoa
  *
  */
-public class ControladorPessoa {
+public class CadastroPessoa {
 	
 	private RepositorioManager repositorio;
 	
-	public ControladorPessoa(){
+	public CadastroPessoa(){
 		
 	}
 	
-	public ControladorPessoa(TipoRepositorio tipo){
+	public CadastroPessoa(TipoRepositorio tipo){
 		carregarRepositorio(tipo);
 	}
 	

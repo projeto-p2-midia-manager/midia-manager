@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import br.cin.ufpe.manager.business.ControladorPessoa;
+import br.cin.ufpe.manager.cadastro.CadastroPessoa;
 import br.cin.ufpe.manager.entity.Pessoa;
 import br.cin.ufpe.manager.entity.TipoRepositorio;
 import br.cin.ufpe.manager.entity.Usuario;
@@ -24,7 +24,7 @@ public class ControladorPessoaTest {
 	
 	@Test
 	public void testarAtualizacao(){
-		ControladorPessoa controladorPessoa = new ControladorPessoa(TipoRepositorio.LISTA);
+		CadastroPessoa controladorPessoa = new CadastroPessoa(TipoRepositorio.LISTA);
 		for (int i = 0; i < 10; i++) {
 			Usuario u = new Usuario();
 			u.setId(new Long(i+1));
@@ -42,7 +42,7 @@ public class ControladorPessoaTest {
 	
 	@Test
 	public void testarInsercao(){
-		ControladorPessoa cp = new ControladorPessoa(TipoRepositorio.LISTA);
+		CadastroPessoa cp = new CadastroPessoa(TipoRepositorio.LISTA);
 		for (int i = 0; i < 10; i++) {
 			Usuario u = new Usuario();
 			u.setId(new Long(i+1));
@@ -57,7 +57,7 @@ public class ControladorPessoaTest {
 	
 	@Test
 	public void testarListar(){
-		ControladorPessoa cp = new ControladorPessoa(TipoRepositorio.LISTA);
+		CadastroPessoa cp = new CadastroPessoa(TipoRepositorio.LISTA);
 		for (int i = 0; i < 10; i++) {
 			Usuario u = new Usuario();
 			u.setId(new Long(i+1));
@@ -72,7 +72,7 @@ public class ControladorPessoaTest {
 	
 	@Test
 	public void testarRemocao(){
-		ControladorPessoa cpes = new ControladorPessoa(TipoRepositorio.LISTA);
+		CadastroPessoa cpes = new CadastroPessoa(TipoRepositorio.LISTA);
 		for (int i = 0; i < 10; i++) {
 			Usuario u = new Usuario();
 			u.setId(new Long(i+1));

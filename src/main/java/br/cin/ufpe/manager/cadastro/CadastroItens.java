@@ -1,4 +1,4 @@
-package br.cin.ufpe.manager.business;
+package br.cin.ufpe.manager.cadastro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +13,14 @@ import br.cin.ufpe.manager.persistence.lista.RepositorioManagerLista;
 import br.cin.ufpe.manager.persistence.vetor.RepositorioManagerVetor;
 import br.cin.ufpe.manager.util.FabricaTipoRepositorio;
 
-public class ControladorItens {
+public class CadastroItens {
 	private RepositorioManager repositorio;
 	
-	public ControladorItens(){
+	public CadastroItens(){
 		
 	}
 	
-	public ControladorItens(TipoRepositorio tipo){
+	public CadastroItens(TipoRepositorio tipo){
 		carregarRepositorio(tipo);
 	}
 	
