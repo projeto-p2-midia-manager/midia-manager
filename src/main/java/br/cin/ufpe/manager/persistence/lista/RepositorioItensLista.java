@@ -34,7 +34,7 @@ public class RepositorioItensLista implements IRepositorio<ItemBackup> {
 
 	public ItemBackup buscarPorId(Long id) {
 		for (ItemBackup itemBackup : itens) {
-			if(itemBackup.getId()==id){
+			if(itemBackup.getId().equals(id)){
 				return itemBackup;
 			}
 		}

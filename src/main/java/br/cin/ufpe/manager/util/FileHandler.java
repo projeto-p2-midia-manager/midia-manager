@@ -45,7 +45,7 @@ public class FileHandler {
 				String[] vetorItem = linha.split(",");
 				ItemBackup item = new ItemBackup();
 				item.setId(Long.parseLong(vetorItem[0]));
-				item.setDescrição(vetorItem[1]);
+				item.setDescricao(vetorItem[1]);
 				lista.add(item);
 			}
 		} catch (NumberFormatException e) {

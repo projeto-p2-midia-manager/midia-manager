@@ -91,4 +91,23 @@ public class ControladorMidia {
 		return null;
 	}
 
+	public Midia buscarMidia(Long id) {
+		if(repositorio instanceof RepositorioManagerArquivo){
+			return ((RepositorioManagerArquivo) this.repositorio).getRepositorioMidiasArquivo().buscarPorId(id);
+		} else if(repositorio instanceof RepositorioManagerBD){
+			return ((RepositorioManagerBD) this.repositorio).getRepositorioMidiasBD().buscarPorId(id);
+		} else if(repositorio instanceof RepositorioManagerLista){
+			return ((RepositorioManagerLista) this.repositorio).getRepositorioMidiasLista().buscarPorId(id);
+		} else if(repositorio instanceof RepositorioManagerVetor) {
+			Midia[] vetor = ((RepositorioManagerVetor) this.repositorio).getRepositorioMidiasVetor().listar();
+			for (int i = 0; i < vetor.length; i++) {
+				if(vetor[i].getId().equals(id)){
+					return vetor[i];
+				}
+			}
+		}
+		return null;
+
+	}
+
 }

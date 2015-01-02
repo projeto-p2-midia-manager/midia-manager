@@ -16,7 +16,7 @@ public class ItemBackup {
 	private Long id;
 	
 	@Column(name="itm_descricao")
-	private String descrição;
+	private String descricao;
 
 	public Long getId() {
 		return id;
@@ -26,16 +26,16 @@ public class ItemBackup {
 		this.id = id;
 	}
 
-	public String getDescrição() {
-		return descrição;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescrição(String descrição) {
-		this.descrição = descrição;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	@Override
 	public String toString() {
-		return id + "," + descrição;
+		return id + "," + descricao;
 	}
 }

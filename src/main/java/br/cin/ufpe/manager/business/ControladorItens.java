@@ -49,7 +49,7 @@ public class ControladorItens {
 		}
 	}
 	
-	public void atualizarMidia(ItemBackup i) {
+	public void atualizarItem(ItemBackup i) {
 		if(repositorio instanceof RepositorioManagerArquivo){
 			((RepositorioManagerArquivo) this.repositorio).getRepositorioItensArquivo().atualizar(i);
 		} else if(repositorio instanceof RepositorioManagerBD){
@@ -61,15 +61,15 @@ public class ControladorItens {
 		}		
 	}
 	
-	public void removerMidia(ItemBackup i) throws ItemNaoEncontradoException {
+	public void removerItem(ItemBackup i) throws ItemNaoEncontradoException {
 		if(repositorio instanceof RepositorioManagerArquivo){
 			((RepositorioManagerArquivo) this.repositorio).getRepositorioItensArquivo().remover(i);
 		} else if(repositorio instanceof RepositorioManagerBD){
-			((RepositorioManagerBD) this.repositorio).getRepositorioItensBD().atualizar(i);
+			((RepositorioManagerBD) this.repositorio).getRepositorioItensBD().remover(i);
 		} else if(repositorio instanceof RepositorioManagerLista){
-			((RepositorioManagerLista) this.repositorio).getRepositorioItensLista().atualizar(i);
+			((RepositorioManagerLista) this.repositorio).getRepositorioItensLista().remover(i);
 		} else if(repositorio instanceof RepositorioManagerVetor) {
-			((RepositorioManagerVetor) this.repositorio).getRepositorioItensVetor().atualizar(i);
+			((RepositorioManagerVetor) this.repositorio).getRepositorioItensVetor().remover(i);
 		}				
 	}
 
@@ -87,6 +87,24 @@ public class ControladorItens {
 				lista.add(vetor[i]);
 			}
 			return lista;
+		}
+		return null;
+	}
+
+	public ItemBackup buscarItem(Long id) {
+		if(repositorio instanceof RepositorioManagerArquivo){
+			return ((RepositorioManagerArquivo) this.repositorio).getRepositorioItensArquivo().buscarPorId(id);
+		} else if(repositorio instanceof RepositorioManagerBD){
+			return ((RepositorioManagerBD) this.repositorio).getRepositorioItensBD().buscarPorId(id);
+		} else if(repositorio instanceof RepositorioManagerLista){
+			return ((RepositorioManagerLista) this.repositorio).getRepositorioItensLista().buscarPorId(id);
+		} else if(repositorio instanceof RepositorioManagerVetor) {
+			ItemBackup[] vetor = ((RepositorioManagerVetor) this.repositorio).getRepositorioItensVetor().listar();
+			for (int i = 0; i < vetor.length; i++) {
+				if(vetor[i].getId().equals(id)){
+					return vetor[i];
+				}
+			}
 		}
 		return null;
 	}
