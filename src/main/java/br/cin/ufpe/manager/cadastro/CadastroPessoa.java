@@ -65,7 +65,8 @@ public class CadastroPessoa {
 			return ((RepositorioManagerLista) this.repositorio).getRepositorioPessoasLista().buscarPorId(id);
 		} else if(repositorio instanceof RepositorioManagerVetor) {
 			Pessoa[] vetor = ((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().listar();
-			for (int i = 0; i < vetor.length; i++) {
+			int indice = ((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().getIndice();
+			for (int i = 0; i < indice; i++) {
 				if(vetor[i].getId().equals(id)){
 					return vetor[i];
 				}

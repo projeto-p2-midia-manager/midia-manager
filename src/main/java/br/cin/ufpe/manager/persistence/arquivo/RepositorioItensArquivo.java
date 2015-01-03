@@ -49,7 +49,7 @@ public class RepositorioItensArquivo implements IRepositorio<ItemBackup> {
 
 	public ItemBackup buscarPorId(Long id) {
 		for (ItemBackup i : itens) {
-			if(i.getId()==id){
+			if(i.getId().equals(id)){
 				return i;
 			}
 		}

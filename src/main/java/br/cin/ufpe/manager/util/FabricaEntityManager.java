@@ -1,17 +1,18 @@
 package br.cin.ufpe.manager.util;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class EntityManagerFactory {
+public class FabricaEntityManager {
 	
 	private static EntityManagerFactory emf;
 	
 	public static EntityManager getEntityManager(String persistenceunitName){
 		if(emf==null){
-			emf = (EntityManagerFactory) Persistence.createEntityManagerFactory(persistenceunitName);
+			emf = Persistence.createEntityManagerFactory(persistenceunitName);
 		}
-		return EntityManagerFactory.getEntityManager(persistenceunitName);
+		return emf.createEntityManager();
 	}
 
 }

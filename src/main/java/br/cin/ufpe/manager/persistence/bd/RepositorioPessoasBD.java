@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.hibernate.Session;
+
 import br.cin.ufpe.manager.entity.Pessoa;
 import br.cin.ufpe.manager.interfaces.IRepositorio;
-import br.cin.ufpe.manager.util.EntityManagerFactory;
+import br.cin.ufpe.manager.util.FabricaEntityManager;
 
 public class RepositorioPessoasBD implements IRepositorio<Pessoa> {
 	
@@ -17,7 +19,7 @@ public class RepositorioPessoasBD implements IRepositorio<Pessoa> {
 	}
 	
 	public RepositorioPessoasBD(String pu){
-		this.em = EntityManagerFactory.getEntityManager(pu);
+		this.em = FabricaEntityManager.getEntityManager(pu);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -26,19 +28,22 @@ public class RepositorioPessoasBD implements IRepositorio<Pessoa> {
 	}
 
 	public void inserir(Pessoa p) {
-		em.persist(p);
-		em.flush();
+		Session session = (Session) em.getDelegate();
+		session.persist(p);
+		session.flush();		
 	}
 
 	public void remover(Pessoa p) {
 		Pessoa pessoa = buscarPorId(p.getId());
-		em.remove(pessoa);
-		em.flush();		
+		Session session = (Session) em.getDelegate();
+		session.delete(pessoa);
+		session.flush();		
 	}
 
 	public void atualizar(Pessoa p) {
-		em.merge(p);
-		em.flush();
+		Session session = (Session) em.getDelegate();
+		session.merge(p);
+		session.flush();
 	}
 
 	public Pessoa buscarPorId(Long id) {

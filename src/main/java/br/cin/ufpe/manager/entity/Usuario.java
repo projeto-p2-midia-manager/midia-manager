@@ -4,13 +4,14 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("USU")
 public class Usuario extends Pessoa {
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Midia> midias;
 
 	public List<Midia> getMidias() {

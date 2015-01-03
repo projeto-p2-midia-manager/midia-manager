@@ -8,14 +8,24 @@ public class RepositorioPessoasVetor implements IRepositorioVetor<Pessoa> {
 
 	private Pessoa[] pessoas = new Pessoa[10];
 	private double loadFactor;
-	private static int indice = 0;
+	private int indice;
+	
+	public int getIndice() {
+		return indice;
+	}
+
+	public void setIndice(int indice) {
+		this.indice = indice;
+	}	
 	
 	private void duplicarCapacidade(){
-		indice = 0;
+		setIndice(0);
 		Pessoa[] temp = new Pessoa[pessoas.length*2];
 		for (int i = 0; i < pessoas.length; i++) {
-			temp[i] = pessoas[i];
-			indice = indice+1;
+			if(pessoas[i]!=null){
+				temp[i] = pessoas[i];
+				setIndice(getIndice()+1);
+			}
 		}
 		pessoas = temp;
 	}
@@ -28,9 +38,9 @@ public class RepositorioPessoasVetor implements IRepositorioVetor<Pessoa> {
 		if(loadFactor >= 0.75){
 			duplicarCapacidade();
 		}
-		indice = indice+1;
-		loadFactor = indice/pessoas.length;
-		pessoas[indice] = t;
+		pessoas[getIndice()] = t;
+		setIndice(getIndice()+1);
+		loadFactor = (double) getIndice()/pessoas.length;
 	}
 
 	public void remover(Pessoa m) throws PessoaNaoEncontradaException {
@@ -39,16 +49,17 @@ public class RepositorioPessoasVetor implements IRepositorioVetor<Pessoa> {
 			throw new PessoaNaoEncontradaException(m.getId());
 		}
 		pessoas[posicao] = null;
-		reordenarVetor();
+		reordenarVetor(posicao);
 	}
 
-	private void reordenarVetor() {
-		for (int posAtual = 0; posAtual < indice; posAtual++) {
-			if(pessoas[posAtual]==null && posAtual < indice){
-				pessoas[posAtual] = pessoas[posAtual+1]; 
+	private void reordenarVetor(int posRemovida) {
+		if(posRemovida!=getIndice()){
+			for (int posAtual = posRemovida; posAtual < getIndice(); posAtual++) {
+				int proximo = posAtual+1;
+				pessoas[posAtual] = pessoas[proximo]; 
 			}
 		}
-		indice=indice-1;
+		setIndice(getIndice()-1);
 	}
 
 	public void atualizar(Pessoa pessoaAtualizada) {
@@ -57,13 +68,12 @@ public class RepositorioPessoasVetor implements IRepositorioVetor<Pessoa> {
 	}
 
 	public int buscarPorId(Long id) {
-		for (int i = 0; i < indice; i++) {
+		for (int i = 0; i < getIndice(); i++) {
 			if(pessoas[i].getId()==id){
 				return i;
 			}
 		}
 		return -1;
 	}
-
 
 }

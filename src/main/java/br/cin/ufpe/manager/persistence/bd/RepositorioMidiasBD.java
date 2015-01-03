@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 
 import br.cin.ufpe.manager.entity.Midia;
 import br.cin.ufpe.manager.interfaces.IRepositorio;
-import br.cin.ufpe.manager.util.EntityManagerFactory;
+import br.cin.ufpe.manager.util.FabricaEntityManager;
 
 public class RepositorioMidiasBD implements IRepositorio<Midia> {
 	
@@ -16,7 +16,7 @@ public class RepositorioMidiasBD implements IRepositorio<Midia> {
 	}
 	
 	public RepositorioMidiasBD(String pu){
-		this.em = EntityManagerFactory.getEntityManager(pu);
+		this.em = FabricaEntityManager.getEntityManager(pu);
 	}
 
 	@SuppressWarnings("unchecked")

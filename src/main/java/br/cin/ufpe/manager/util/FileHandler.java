@@ -116,6 +116,7 @@ public class FileHandler {
 			for (Pessoa p : pessoas) {
 				bw.write(p.toString());
 			}
+			bw.close();
 		} catch (IOException e) {
 			log.error("Erro ao gravar no arquivo.");
 		}		
@@ -131,6 +132,7 @@ public class FileHandler {
 			for (Midia m : midias) {
 				bw.write(m.toString());
 			}
+			bw.close();
 		} catch (IOException e) {
 			log.error("Erro ao gravar no arquivo.");
 		}		
@@ -146,9 +148,10 @@ public class FileHandler {
 			for (ItemBackup it : itens) {
 				bw.write(it.toString());
 			}
+			bw.close();
 		} catch (IOException e) {
 			log.error("Erro ao gravar no arquivo.");
-		}		
+		}
 	}
 	
 
