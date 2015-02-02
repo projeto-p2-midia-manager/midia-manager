@@ -33,7 +33,7 @@ public class CadastroPessoaTest {
 	}
 	
 	public void testarAtualizacao(TipoRepositorio tipo){
-		CadastroPessoa controladorPessoa = new CadastroPessoa(tipo);
+		CadastroPessoa cadastroPessoa = new CadastroPessoa(tipo);
 		for (int i = 0; i < 10; i++) {
 			Usuario u = new Usuario();
 			if(!tipo.equals(TipoRepositorio.BD)){
@@ -41,13 +41,13 @@ public class CadastroPessoaTest {
 			}
 			u.setCpf("123.456.789-"+i+(i+1));
 			u.setNome("John "+ (i+1));
-			controladorPessoa.inserirNovaPessoa(u);
+			cadastroPessoa.inserirNovaPessoa(u);
 		}
 		
-		Usuario usu = (Usuario) controladorPessoa.buscarPessoa(new Long(1));
+		Usuario usu = (Usuario) cadastroPessoa.buscarPessoa(new Long(1));
 		usu.setNome("John Macloud");
-		controladorPessoa.atualizarPessoa(usu);
-		Usuario usuRepo = (Usuario) controladorPessoa.buscarPessoa(usu.getId());
+		cadastroPessoa.atualizarPessoa(usu);
+		Usuario usuRepo = (Usuario) cadastroPessoa.buscarPessoa(usu.getId());
 		Assert.assertTrue(usuRepo.getNome().equals(usu.getNome()));
 	}
 	
@@ -84,7 +84,7 @@ public class CadastroPessoaTest {
 	}	
 	
 	public void testarRemocao(TipoRepositorio tipo){
-		CadastroPessoa cpes = new CadastroPessoa(tipo);
+		CadastroPessoa cps = new CadastroPessoa(tipo);
 		for (int i = 0; i < 10; i++) {
 			Usuario u = new Usuario();
 			if(!tipo.equals(TipoRepositorio.BD)){
@@ -92,16 +92,16 @@ public class CadastroPessoaTest {
 			}
 			u.setCpf("123.456.789-"+i+(i+1));
 			u.setNome("John "+ (i+1));
-			cpes.inserirNovaPessoa(u);
+			cps.inserirNovaPessoa(u);
 		}
 		
-		Usuario usu = (Usuario) cpes.buscarPessoa(new Long(1));
+		Usuario usu = (Usuario) cps.buscarPessoa(new Long(1));
 		try {
-			cpes.removerPessoa(usu);
+			cps.removerPessoa(usu);
 		} catch (PessoaNaoEncontradaException e) {
 			e.printStackTrace();
 		}
-		usu = (Usuario) cpes.buscarPessoa(new Long(1));
+		usu = (Usuario) cps.buscarPessoa(new Long(1));
 		Assert.assertNull(usu);
 	}	
 
