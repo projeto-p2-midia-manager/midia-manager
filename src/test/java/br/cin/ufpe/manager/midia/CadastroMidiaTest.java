@@ -22,8 +22,17 @@ import br.cin.ufpe.manager.exception.MidiaNaoEncontradaException;
 public class CadastroMidiaTest {
 	
 	@Test
-	public void testarAtualizacao(){
-		CadastroMidia controladorMidia = new CadastroMidia(TipoRepositorio.LISTA);
+	public void testarCadastros(){
+		for(TipoRepositorio tipo : TipoRepositorio.values()){
+			testarAtualizacao(tipo);
+			testarInsercao(tipo);
+			testarListar(tipo);
+			testarRemocao(tipo);
+		}
+	}
+	
+	public void testarAtualizacao(TipoRepositorio tipo){
+		CadastroMidia controladorMidia = new CadastroMidia(tipo);
 		for (int i = 0; i < 10; i++) {
 			Midia m = new Midia();
 			m.setId(new Long(i+1));
@@ -34,13 +43,12 @@ public class CadastroMidiaTest {
 		Midia midia = (Midia) controladorMidia.buscarMidia(new Long(1));
 		midia.setNome("Backup Teste");
 		controladorMidia.atualizarMidia(midia);
-		Midia usuRepo = (Midia) controladorMidia.buscarMidia(midia.getId());
-		Assert.assertTrue(usuRepo.getNome().equals(midia.getNome()));
+		Midia midiaRepo = (Midia) controladorMidia.buscarMidia(midia.getId());
+		Assert.assertTrue(midiaRepo.getNome().equals(midia.getNome()));
 	}
 	
-	@Test
-	public void testarInsercao(){
-		CadastroMidia cm = new CadastroMidia(TipoRepositorio.LISTA);
+	public void testarInsercao(TipoRepositorio tipo){
+		CadastroMidia cm = new CadastroMidia(tipo);
 		for (int i = 0; i < 10; i++) {
 			Midia m = new Midia();
 			m.setId(new Long(i+1));
@@ -52,9 +60,8 @@ public class CadastroMidiaTest {
 		Assert.assertNotNull(usu);
 	}
 	
-	@Test
-	public void testarListar(){
-		CadastroMidia cm = new CadastroMidia(TipoRepositorio.LISTA);
+	public void testarListar(TipoRepositorio tipo){
+		CadastroMidia cm = new CadastroMidia(tipo);
 		for (int i = 0; i < 10; i++) {
 			Midia m = new Midia();
 			m.setId(new Long(i+1));
@@ -66,9 +73,8 @@ public class CadastroMidiaTest {
 		Assert.assertTrue(lista.size()>0);
 	}	
 	
-	@Test
-	public void testarRemocao(){
-		CadastroMidia cMidia = new CadastroMidia(TipoRepositorio.LISTA);
+	public void testarRemocao(TipoRepositorio tipo){
+		CadastroMidia cMidia = new CadastroMidia(tipo);
 		for (int i = 0; i < 10; i++) {
 			Midia m = new Midia();
 			m.setId(new Long(i+1));

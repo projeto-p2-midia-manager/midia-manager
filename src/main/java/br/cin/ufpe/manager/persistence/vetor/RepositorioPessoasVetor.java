@@ -69,7 +69,7 @@ public class RepositorioPessoasVetor implements IRepositorioVetor<Pessoa> {
 
 	public int buscarPorId(Long id) {
 		for (int i = 0; i < getIndice(); i++) {
-			if(pessoas[i].getId()==id){
+			if(pessoas[i].getId().equals(id)){
 				return i;
 			}
 		}

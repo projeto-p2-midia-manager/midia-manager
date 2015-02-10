@@ -65,11 +65,11 @@ public class CadastroMidia {
 		if(repositorio instanceof RepositorioManagerArquivo){
 			((RepositorioManagerArquivo) this.repositorio).getRepositorioMidiasArquivo().remover(p);
 		} else if(repositorio instanceof RepositorioManagerBD){
-			((RepositorioManagerBD) this.repositorio).getRepositorioMidiasBD().atualizar(p);
+			((RepositorioManagerBD) this.repositorio).getRepositorioMidiasBD().remover(p);
 		} else if(repositorio instanceof RepositorioManagerLista){
-			((RepositorioManagerLista) this.repositorio).getRepositorioMidiasLista().atualizar(p);
+			((RepositorioManagerLista) this.repositorio).getRepositorioMidiasLista().remover(p);
 		} else if(repositorio instanceof RepositorioManagerVetor) {
-			((RepositorioManagerVetor) this.repositorio).getRepositorioMidiasVetor().atualizar(p);
+			((RepositorioManagerVetor) this.repositorio).getRepositorioMidiasVetor().remover(p);
 		}				
 	}
 

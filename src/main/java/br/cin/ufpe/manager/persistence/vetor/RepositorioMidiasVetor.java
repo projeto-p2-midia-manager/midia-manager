@@ -58,7 +58,7 @@ public class RepositorioMidiasVetor implements IRepositorioVetor<Midia> {
 
 	public int buscarPorId(Long id) {
 		for (int i = 0; i < indice; i++) {
-			if(midias[i].getId()==id){
+			if(midias[i].getId().equals(id)){
 				return i;
 			}
 		}

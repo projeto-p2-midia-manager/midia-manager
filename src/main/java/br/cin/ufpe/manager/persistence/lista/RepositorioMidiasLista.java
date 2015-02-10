@@ -18,31 +18,30 @@ public class RepositorioMidiasLista implements IRepositorio<Midia> {
 		return listaDeMidias;
 	}
 
-	/***
-	 * 
-	 */
 	public List<Midia> listar() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.listaDeMidias;
 	}
 
-	public void inserir(Midia t) {
-		// TODO Auto-generated method stub
-		
+	public void inserir(Midia m) {
+		this.listaDeMidias.add(m);
 	}
 
-	public void remover(Midia t) {
-		// TODO Auto-generated method stub
-		
+	public void remover(Midia m) {
+		this.listaDeMidias.remove(m);
 	}
 
-	public void atualizar(Midia t) {
-		// TODO Auto-generated method stub
-		
+	public void atualizar(Midia m) {
+		Midia midiaAnterior = buscarPorId(m.getId());
+		this.listaDeMidias.remove(midiaAnterior);
+		this.listaDeMidias.add(m);
 	}
 
 	public Midia buscarPorId(Long id) {
-		// TODO Auto-generated method stub
+		for (Midia midia : listaDeMidias) {
+			if(midia.getId().equals(id)){
+				return midia;
+			}
+		}
 		return null;
 	}
 

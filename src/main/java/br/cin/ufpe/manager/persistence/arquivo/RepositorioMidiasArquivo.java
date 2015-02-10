@@ -52,7 +52,7 @@ public class RepositorioMidiasArquivo implements IRepositorio<Midia> {
 
 	public Midia buscarPorId(Long id) {
 		for (Midia m : midias) {
-			if(m.getId()==id){
+			if(m.getId().equals(id)){
 				return m;
 			}
 		}

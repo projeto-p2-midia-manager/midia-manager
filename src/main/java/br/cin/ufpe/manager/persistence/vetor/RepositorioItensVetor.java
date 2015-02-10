@@ -58,7 +58,7 @@ public class RepositorioItensVetor implements IRepositorioVetor<ItemBackup> {
 
 	public int buscarPorId(Long id) {
 		for (int i = 0; i < indice; i++) {
-			if(itens[i].getId()==id){
+			if(itens[i].getId().equals(id)){
 				return i;
 			}
 		}
