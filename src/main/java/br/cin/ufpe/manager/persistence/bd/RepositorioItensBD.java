@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.hibernate.Session;
+
 import br.cin.ufpe.manager.entity.ItemMidia;
 import br.cin.ufpe.manager.interfaces.IRepositorio;
 import br.cin.ufpe.manager.util.FabricaEntityManager;
@@ -26,24 +28,32 @@ public class RepositorioItensBD implements IRepositorio<ItemMidia> {
 	}
 
 	public void inserir(ItemMidia i) {
-		em.persist(i);
-		em.flush();
+		Session session = (Session) em.getDelegate();
+		session.persist(i);
+		session.flush();
 	}
 
 	public void remover(ItemMidia i) {
+		Session session = (Session) em.getDelegate();
 		ItemMidia item = buscarPorId(i.getId());
-		em.remove(item);
-		em.flush();
+		session.delete(item);
+		session.flush();
 	}
 
 	public void atualizar(ItemMidia i) {
-		em.merge(i);
-		em.flush();
+		Session session = (Session) em.getDelegate();
+		session.merge(i);
+		session.flush();
 	}
 
 	public ItemMidia buscarPorId(Long id) {
-		ItemMidia item = em.find(ItemMidia.class, id);
-		return item;
+		List<ItemMidia> lista = listar();
+		for (ItemMidia itemMidia : lista) {
+			if(itemMidia.getId().equals(id)){
+				return itemMidia;
+			}
+		}
+		return null;
 	}
 
 }

@@ -24,6 +24,14 @@ public class ItemMidia {
 	@JoinColumn(name="midia_fk")
 	private Midia midia;
 
+	public Midia getMidia() {
+		return midia;
+	}
+
+	public void setMidia(Midia midia) {
+		this.midia = midia;
+	}
+
 	public Long getId() {
 		return id;
 	}

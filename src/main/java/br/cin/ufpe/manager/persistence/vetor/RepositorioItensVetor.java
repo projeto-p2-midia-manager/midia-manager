@@ -8,10 +8,10 @@ public class RepositorioItensVetor implements IRepositorioVetor<ItemMidia> {
 
 	private ItemMidia[] itens = new ItemMidia[10];
 	private double loadFactor;
-	private static int indice = 0;
+	private int indice;
 	
 	private void duplicarCapacidade(){
-		indice = 0;
+		this.indice = 0;
 		ItemMidia[] temp = new ItemMidia[itens.length*2];
 		for (int i = 0; i < itens.length; i++) {
 			temp[i] = itens[i];
@@ -28,9 +28,9 @@ public class RepositorioItensVetor implements IRepositorioVetor<ItemMidia> {
 		if(loadFactor >= 0.75){
 			duplicarCapacidade();
 		}
-		indice = indice+1;
-		loadFactor = indice/itens.length;
 		itens[indice] = t;
+		this.indice = this.indice+1;
+		loadFactor = (double) indice/itens.length;
 	}
 
 	public void remover(ItemMidia m) throws ItemNaoEncontradoException {
