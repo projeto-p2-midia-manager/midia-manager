@@ -47,8 +47,13 @@ public class RepositorioPessoasBD implements IRepositorio<Pessoa> {
 	}
 
 	public Pessoa buscarPorId(Long id) {
-		Pessoa pessoa = em.find(Pessoa.class, id);
-		return pessoa;
+		List<Pessoa> lista = listar();
+		for (Pessoa pessoa : lista) {
+			if(pessoa.getId().equals(id)){
+				return pessoa;
+			}
+		}
+		return null;
 	}
 	
 	@SuppressWarnings("unchecked")
