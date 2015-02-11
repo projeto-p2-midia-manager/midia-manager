@@ -35,17 +35,25 @@ public class CadastroMidiaTest {
 	
 	public void testarAtualizacao(TipoRepositorio tipo){
 		CadastroMidia controladorMidia = new CadastroMidia(tipo);
-		if(tipo.equals(TipoRepositorio.BD)){
-			CadastroPessoa cadastroPessoa = new CadastroPessoa(tipo);
+		for (int i = 0; i < 10; i++) {
+			Midia m = new Midia();
+			if(!tipo.equals(TipoRepositorio.BD)){
+				m.setId(new Long(i+1));
+			}
+			m.setNome("Backup "+(i+1));
+
 			Usuario u = new Usuario();
 			u.setNome("José");
 			u.setCpf("111.111.111-11");
-			cadastroPessoa.inserirNovaPessoa(u);
-		}
-		for (int i = 0; i < 10; i++) {
-			Midia m = new Midia();
-			m.setId(new Long(i+1));
-			m.setNome("Backup "+(i+1));
+
+			if(tipo.equals(TipoRepositorio.BD)){
+				CadastroPessoa cadastroPessoa = new CadastroPessoa(tipo);
+				cadastroPessoa.inserirNovaPessoa(u);
+				Usuario dono = (Usuario) cadastroPessoa.buscarPessoa(u.getId());
+				m.setDono(dono);
+			} else {
+				m.setDono(u);
+			}
 			controladorMidia.inserirNovaMidia(m);
 		}
 		
@@ -53,14 +61,16 @@ public class CadastroMidiaTest {
 		midia.setNome("Backup Teste");
 		controladorMidia.atualizarMidia(midia);
 		Midia midiaRepo = (Midia) controladorMidia.buscarMidia(midia.getId());
-		Assert.assertTrue(midiaRepo.getNome().equals(midia.getNome()));
+		Assert.assertTrue(midiaRepo.getNome().equals(midia.getNome()));			
 	}
 	
 	public void testarInsercao(TipoRepositorio tipo){
 		CadastroMidia cm = new CadastroMidia(tipo);
 		for (int i = 0; i < 10; i++) {
 			Midia m = new Midia();
-			m.setId(new Long(i+1));
+			if(!tipo.equals(TipoRepositorio.BD)){
+				m.setId(new Long(i+1));
+			}
 			m.setNome("Backup "+ (i+1));
 			cm.inserirNovaMidia(m);
 		}
@@ -73,7 +83,9 @@ public class CadastroMidiaTest {
 		CadastroMidia cm = new CadastroMidia(tipo);
 		for (int i = 0; i < 10; i++) {
 			Midia m = new Midia();
-			m.setId(new Long(i+1));
+			if(!tipo.equals(TipoRepositorio.BD)){
+				m.setId(new Long(i+1));
+			}
 			m.setNome("Backup "+ (i+1));
 			cm.inserirNovaMidia(m);
 		}
@@ -86,7 +98,9 @@ public class CadastroMidiaTest {
 		CadastroMidia cMidia = new CadastroMidia(tipo);
 		for (int i = 0; i < 10; i++) {
 			Midia m = new Midia();
-			m.setId(new Long(i+1));
+			if(!tipo.equals(TipoRepositorio.BD)){
+				m.setId(new Long(i+1));
+			}
 			m.setNome("John "+ (i+1));
 			cMidia.inserirNovaMidia(m);
 		}
