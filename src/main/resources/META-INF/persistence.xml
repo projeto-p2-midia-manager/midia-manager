@@ -14,7 +14,7 @@
 	<class>br.cin.ufpe.manager.entity.Pessoa</class>
 	<class>br.cin.ufpe.manager.entity.Usuario</class>
 	<class>br.cin.ufpe.manager.entity.Administrador</class>
-	<class>br.cin.ufpe.manager.entity.ItemBackup</class>
+	<class>br.cin.ufpe.manager.entity.ItemMidia</class>
 
 	<properties>
 		<!-- dados da conexao postgresql -->
@@ -34,6 +34,7 @@
 	</properties>
  </persistence-unit>
  
+ <!-- H2 -->
  <persistence-unit name="h2">
 	<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
@@ -42,7 +43,7 @@
 	<class>br.cin.ufpe.manager.entity.Pessoa</class>
 	<class>br.cin.ufpe.manager.entity.Usuario</class>
 	<class>br.cin.ufpe.manager.entity.Administrador</class>
-	<class>br.cin.ufpe.manager.entity.ItemBackup</class>
+	<class>br.cin.ufpe.manager.entity.ItemMidia</class>
 
 	<properties>
 		<property name="hibernate.archive.autodetection" value="class" />

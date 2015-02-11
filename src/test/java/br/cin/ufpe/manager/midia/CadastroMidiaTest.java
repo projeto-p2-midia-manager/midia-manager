@@ -8,8 +8,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import br.cin.ufpe.manager.cadastro.CadastroMidia;
+import br.cin.ufpe.manager.cadastro.CadastroPessoa;
 import br.cin.ufpe.manager.entity.Midia;
 import br.cin.ufpe.manager.entity.TipoRepositorio;
+import br.cin.ufpe.manager.entity.Usuario;
 import br.cin.ufpe.manager.exception.MidiaNaoEncontradaException;
 
 /***
@@ -33,6 +35,13 @@ public class CadastroMidiaTest {
 	
 	public void testarAtualizacao(TipoRepositorio tipo){
 		CadastroMidia controladorMidia = new CadastroMidia(tipo);
+		if(tipo.equals(TipoRepositorio.BD)){
+			CadastroPessoa cadastroPessoa = new CadastroPessoa(tipo);
+			Usuario u = new Usuario();
+			u.setNome("José");
+			u.setCpf("111.111.111-11");
+			cadastroPessoa.inserirNovaPessoa(u);
+		}
 		for (int i = 0; i < 10; i++) {
 			Midia m = new Midia();
 			m.setId(new Long(i+1));

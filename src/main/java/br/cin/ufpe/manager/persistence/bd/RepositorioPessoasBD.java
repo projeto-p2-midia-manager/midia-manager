@@ -50,5 +50,15 @@ public class RepositorioPessoasBD implements IRepositorio<Pessoa> {
 		Pessoa pessoa = em.find(Pessoa.class, id);
 		return pessoa;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Pessoa> listarUsuarios() {
+		return em.createQuery("SELECT u FROM Usuario u").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Pessoa> listarAdministradores() {
+		return em.createQuery("SELECT a FROM Administrador a").getResultList();
+	}	
 
 }
