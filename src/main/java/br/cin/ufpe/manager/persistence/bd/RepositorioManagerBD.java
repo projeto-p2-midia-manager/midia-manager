@@ -10,6 +10,11 @@ import org.slf4j.LoggerFactory;
 
 import br.cin.ufpe.manager.persistence.RepositorioManager;
 
+/**
+ * Classe responsavel por agrupar os repositorios que manipulam as classes básicas utilizando Hibernate
+ * @author Fagner Fernandes
+ *
+ */
 public class RepositorioManagerBD extends RepositorioManager {
 	
 	private static final Logger log = LoggerFactory.getLogger(RepositorioManagerBD.class); 

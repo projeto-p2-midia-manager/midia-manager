@@ -2,8 +2,8 @@ package br.cin.ufpe.manager.persistence.lista;
 
 import br.cin.ufpe.manager.persistence.RepositorioManager;
 
-/***
- * Classe responsável por genrenciar os tipos de repositorio (para cada classe básica) do tipo Lista
+/**
+ * Classe responsavel por agrupar os repositorios que manipulam as classes básicas utilizando Lista
  * @author Fagner Fernandes
  *
  */

@@ -4,6 +4,11 @@ import br.cin.ufpe.manager.entity.Pessoa;
 import br.cin.ufpe.manager.exception.PessoaNaoEncontradaException;
 import br.cin.ufpe.manager.interfaces.IRepositorioVetor;
 
+/**
+ * Classe responsavel pelas operacoes de CRUD da classe Pessoa usando vetor como repositorio
+ * @author Fagner Fernandes
+ *
+ */
 public class RepositorioPessoasVetor implements IRepositorioVetor<Pessoa> {
 
 	private Pessoa[] pessoas = new Pessoa[10];

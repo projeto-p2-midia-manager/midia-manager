@@ -16,7 +16,7 @@ import br.cin.ufpe.manager.exception.PessoaNaoEncontradaException;
 /***
  * 
  * @author Fagner Fernandes
- * Classe responsavel por testar a classe ControladorPessoa
+ * Classe responsavel por testar a classe CadastroPessoa
  */
 
 @RunWith(value=JUnit4.class)

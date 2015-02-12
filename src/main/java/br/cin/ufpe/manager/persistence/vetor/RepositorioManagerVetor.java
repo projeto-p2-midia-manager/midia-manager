@@ -2,6 +2,11 @@ package br.cin.ufpe.manager.persistence.vetor;
 
 import br.cin.ufpe.manager.persistence.RepositorioManager;
 
+/**
+ * Classe responsavel por agrupar os repositorios que manipulam as classes básicas utilizando Vetor
+ * @author Fagner Fernandes
+ *
+ */
 public class RepositorioManagerVetor extends RepositorioManager {
 	
 	private RepositorioMidiasVetor repositorioMidiasVetor;

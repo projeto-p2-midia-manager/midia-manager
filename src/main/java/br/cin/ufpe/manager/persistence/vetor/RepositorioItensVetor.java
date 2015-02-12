@@ -4,6 +4,11 @@ import br.cin.ufpe.manager.entity.ItemMidia;
 import br.cin.ufpe.manager.exception.ItemNaoEncontradoException;
 import br.cin.ufpe.manager.interfaces.IRepositorioVetor;
 
+/**
+ * Classe responsavel pelas operacoes de CRUD da classe ItemMidia usando vetor como repositorio
+ * @author Fagner Fernandes
+ *
+ */
 public class RepositorioItensVetor implements IRepositorioVetor<ItemMidia> {
 
 	private ItemMidia[] itens = new ItemMidia[10];
@@ -20,10 +25,16 @@ public class RepositorioItensVetor implements IRepositorioVetor<ItemMidia> {
 		itens = temp;
 	}
 	
+	/**
+	 * lista todos os itens de midia cadastrados
+	 */
 	public ItemMidia[] listar(){
 		return itens;
 	}
 
+	/**
+	 * Insere um novo item de midia no vetor
+	 */
 	public void inserir(ItemMidia t) {
 		if(loadFactor >= 0.75){
 			duplicarCapacidade();
@@ -33,6 +44,9 @@ public class RepositorioItensVetor implements IRepositorioVetor<ItemMidia> {
 		loadFactor = (double) indice/itens.length;
 	}
 
+	/**
+	 * remove um item de midia do vetor
+	 */
 	public void remover(ItemMidia m) throws ItemNaoEncontradoException {
 		int posicao = buscarPorId(m.getId());
 		if(posicao==-1){
@@ -42,6 +56,9 @@ public class RepositorioItensVetor implements IRepositorioVetor<ItemMidia> {
 		reordenarVetor();
 	}
 
+	/**
+	 * reordena o vetor de itens de midia
+	 */
 	private void reordenarVetor() {
 		for (int posAtual = 0; posAtual < indice; posAtual++) {
 			if(itens[posAtual]==null && posAtual < indice){
@@ -51,11 +68,17 @@ public class RepositorioItensVetor implements IRepositorioVetor<ItemMidia> {
 		indice=indice-1;
 	}
 
+	/**
+	 * atualiza um item de midia
+	 */
 	public void atualizar(ItemMidia itemAtualizada) {
 		int p = buscarPorId(itemAtualizada.getId());
 		itens[p] = itemAtualizada;
 	}
 
+	/**
+	 * busca um item de midia por id
+	 */
 	public int buscarPorId(Long id) {
 		for (int i = 0; i < indice; i++) {
 			if(itens[i].getId().equals(id)){

@@ -13,6 +13,11 @@ import br.cin.ufpe.manager.persistence.lista.RepositorioManagerLista;
 import br.cin.ufpe.manager.persistence.vetor.RepositorioManagerVetor;
 import br.cin.ufpe.manager.util.FabricaTipoRepositorio;
 
+/**
+ * Classe de negócio responsável por repassar as operações CRUD para o repositorio adequado 
+ * @author Fagner Fernandes
+ *
+ */
 public class CadastroItens {
 	private RepositorioManager repositorio;
 	
@@ -24,6 +29,10 @@ public class CadastroItens {
 		carregarRepositorio(tipo);
 	}
 	
+	/**
+	 * Cria o repositorio de acordo com seu tipo
+	 * @param tipoRepositorio pode ser ARQUIVO, BD, LISTA ou VETOR
+	 */
 	private void carregarRepositorio(TipoRepositorio tipoRepositorio) {
 		FabricaTipoRepositorio fabrica = new FabricaTipoRepositorio();
 		this.setRepositorio(fabrica.getRepositorio(tipoRepositorio));		
@@ -37,6 +46,10 @@ public class CadastroItens {
 		this.repositorio = repositorio;
 	}
 	
+	/**
+	 * Insere um novo ItemMidia no repositorio adequado
+	 * @param i, ItemMidia a ser inserido
+	 */
 	public void inserirNovoItem(ItemMidia i){
 		if(repositorio instanceof RepositorioManagerArquivo){
 			((RepositorioManagerArquivo) this.repositorio).getRepositorioItensArquivo().inserir(i);
@@ -49,6 +62,10 @@ public class CadastroItens {
 		}
 	}
 	
+	/**
+	 * Insere um novo ItemMidia no repositorio adequado
+	 * @param i, ItemMidia a ser atualizado
+	 */
 	public void atualizarItem(ItemMidia i) {
 		if(repositorio instanceof RepositorioManagerArquivo){
 			((RepositorioManagerArquivo) this.repositorio).getRepositorioItensArquivo().atualizar(i);
@@ -61,6 +78,11 @@ public class CadastroItens {
 		}		
 	}
 	
+	/**
+	 * Remove um novo ItemMidia no repositorio adequado
+	 * @param i, ItemMidia a ser removido
+	 * @throws ItemNaoEncontradoException caso o ItemMidia a ser removido não exista no repositório
+	 */
 	public void removerItem(ItemMidia i) throws ItemNaoEncontradoException {
 		if(repositorio instanceof RepositorioManagerArquivo){
 			((RepositorioManagerArquivo) this.repositorio).getRepositorioItensArquivo().remover(i);
@@ -73,6 +95,10 @@ public class CadastroItens {
 		}				
 	}
 
+	/**
+	 * Lista os itens ItemMidia existentes no repositorio adequado
+	 * @return uma coleção de ItemMidia
+	 */
 	public List<ItemMidia> listar(){
 		if(repositorio instanceof RepositorioManagerArquivo){
 			return ((RepositorioManagerArquivo) this.repositorio).getRepositorioItensArquivo().listar();
@@ -91,6 +117,11 @@ public class CadastroItens {
 		return null;
 	}
 
+	/**
+	 * Retorna um ItemMidia no repositorio adequado
+	 * @param id, chave do ItemMidia a ser encontrado
+	 * @return um objeto do tipo ItemMidia, caso ele exista no repositorio, ou nulo, caso não exista.
+	 */
 	public ItemMidia buscarItem(Long id) {
 		if(repositorio instanceof RepositorioManagerArquivo){
 			return ((RepositorioManagerArquivo) this.repositorio).getRepositorioItensArquivo().buscarPorId(id);

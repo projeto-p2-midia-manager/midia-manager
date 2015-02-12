@@ -15,23 +15,28 @@ import br.cin.ufpe.manager.business.ControladorPrincipal;
 import br.cin.ufpe.manager.entity.Administrador;
 import br.cin.ufpe.manager.entity.TipoRepositorio;
 
-
+/**
+ * Janela de cadastro de Administradores usando Swing
+ * 
+ * @author Beatriz Sena
+ *
+ */
 public class JanelaAdicionaAdmin {
 	
 	
 	public static void main(String[] args) {
 
-		//criação da janela de cadastro 
+		//criacao da janela de cadastro 
 		JFrame janelaAddAdmin = new JFrame("Adicionar administrador");
-		janelaAddAdmin.setBounds(450, 450, 450, 450); //dimenões da janela
+		janelaAddAdmin.setBounds(450, 450, 450, 450); //dimensoes da janela
 		janelaAddAdmin.setLayout(new GridLayout(3, 1, 0, 10));
 		janelaAddAdmin.setLocationRelativeTo(null); //centralizar a janela na tela
 
-		//criação dos painéis que abrigam o conteúdo da janela
+		//criacao dos paineis que abrigam o conteudo da janela
 		final JPanel panelPrincipalAdmin = new JPanel();
 		final JPanel panelBotaoAdmin = new JPanel();
 
-		//criação dos campos de preencher
+		//criacao dos campos de preencher
 		final JLabel labelnome = new JLabel();
 		labelnome.setText("Nome:");
 		final JTextField txtNome = new JTextField();
@@ -47,12 +52,12 @@ public class JanelaAdicionaAdmin {
 		final JTextField txtEmail = new JTextField();
 		txtEmail.setBounds(5, 0, 60, 30);
 
-		//criação do botão adicionar
+		//criacao do botao adicionar
 		JButton adicionarAdmin = new JButton();
 		adicionarAdmin.setBounds(0, 0, 10, 10);
 		adicionarAdmin.setText("Adicionar");
 
-		//adicionando os conteúdos aos paineis
+		//adicionando os conteudos aos paineis
 		panelPrincipalAdmin.add(labelnome);
 		panelPrincipalAdmin.add(txtNome);
 		panelPrincipalAdmin.add(labelcpf);
@@ -61,7 +66,7 @@ public class JanelaAdicionaAdmin {
 		panelPrincipalAdmin.add(txtEmail);
 		panelBotaoAdmin.add(adicionarAdmin);
 
-		//dimensões do painel do botão
+		//dimensões do painel do botao
 		panelBotaoAdmin.setBounds(0, 0, 12, 12);
 
 		//definição dos layouts dos paineis
@@ -70,11 +75,10 @@ public class JanelaAdicionaAdmin {
 		panelBotaoAdmin.setLayout(new BoxLayout(panelBotaoAdmin, BoxLayout.Y_AXIS));
 		janelaAddAdmin.add(panelBotaoAdmin);
 
-		//AQUI NO ADM O REPOSITÓRIO É BD TAMBÉM?
 		//armazenando dados
 		final ControladorPrincipal cp = new ControladorPrincipal(TipoRepositorio.BD);
 
-		//ação do botão adicionar
+		//acao do botao adicionar
 		ActionListener inserirAdmin = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Administrador u = new Administrador();

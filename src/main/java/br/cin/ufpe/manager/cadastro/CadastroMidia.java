@@ -12,7 +12,11 @@ import br.cin.ufpe.manager.persistence.bd.RepositorioManagerBD;
 import br.cin.ufpe.manager.persistence.lista.RepositorioManagerLista;
 import br.cin.ufpe.manager.persistence.vetor.RepositorioManagerVetor;
 import br.cin.ufpe.manager.util.FabricaTipoRepositorio;
-
+/**
+ * Classe de negócio responsável por repassar as operações CRUD para o repositorio adequado 
+ * @author Fagner Fernandes
+ *
+ */
 public class CadastroMidia {
 	private RepositorioManager repositorio;
 	

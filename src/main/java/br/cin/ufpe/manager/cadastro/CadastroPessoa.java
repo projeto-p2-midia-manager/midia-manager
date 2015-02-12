@@ -44,6 +44,10 @@ public class CadastroPessoa {
 		this.repositorio = repositorio;
 	}
 	
+	/**
+	 * Atualiza uma nova Pessoa no repositorio adequado
+	 * @param p, Pessoa a ser atualizada
+	 */	
 	public void atualizarPessoa(Pessoa p) {
 		if(repositorio instanceof RepositorioManagerArquivo){
 			((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().atualizar(p);
@@ -55,7 +59,12 @@ public class CadastroPessoa {
 			((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().atualizar(p);
 		}		
 	}
-	
+
+	/**
+	 * Retorna uma Pessoa no repositorio adequado
+	 * @param id, chave da Pessoa a ser encontrada
+	 * @return um objeto do tipo Pessoa, caso ele exista no repositorio, ou nulo, caso não exista.
+	 */
 	public Pessoa buscarPessoa(Long id){
 		if(repositorio instanceof RepositorioManagerArquivo){
 			return ((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().buscarPorId(id);
@@ -75,6 +84,10 @@ public class CadastroPessoa {
 		return null;		
 	}
 	
+	/**
+	 * Insere uma nova Pessoa no repositorio adequado
+	 * @param p, Pessoa a ser inserida
+	 */	
 	public void inserirNovaPessoa(Pessoa p){
 		if(repositorio instanceof RepositorioManagerArquivo){
 			((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().inserir(p);
@@ -86,7 +99,11 @@ public class CadastroPessoa {
 			((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().inserir(p);
 		}
 	}
-
+	
+	/**
+	 * Lista os itens Pessoa existentes no repositorio adequado
+	 * @return uma coleção de Pessoa
+	 */
 	public List<Pessoa> listar(){
 		if(repositorio instanceof RepositorioManagerArquivo){
 			return ((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().listar();
@@ -105,6 +122,11 @@ public class CadastroPessoa {
 		return null;
 	}
 	
+	/**
+	 * Remove uma Pessoa no repositorio adequado
+	 * @param p, Pessoa a ser removida
+	 * @throws PessoaNaoEncontradaException caso a pessoa nao exista no repositorio
+	 */
 	public void removerPessoa(Pessoa p) throws PessoaNaoEncontradaException {
 		if(repositorio instanceof RepositorioManagerArquivo){
 			((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().remover(p);
@@ -117,10 +139,18 @@ public class CadastroPessoa {
 		}				
 	}
 	
+	/**
+	 * Lista uma coleção de Usuarios cadastrados no repositorio adequado
+	 * @return coleção de usuarios
+	 */	
 	public List<Pessoa> listarUsuarios(){
 		return ((RepositorioManagerBD) this.repositorio).getRepositorioPessoasBD().listarUsuarios();
 	}
 
+	/**
+	 * Lista uma coleção de Administradores cadastrados no repositorio adequado
+	 * @return coleção de administradores
+	 */	
 	public List<Pessoa> listarAdministradores(){
 		return ((RepositorioManagerBD) this.repositorio).getRepositorioPessoasBD().listarAdministradores();
 	}
