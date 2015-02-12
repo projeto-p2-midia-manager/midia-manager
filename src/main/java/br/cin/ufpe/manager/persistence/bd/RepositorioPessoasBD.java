@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
 
+import br.cin.ufpe.manager.entity.Administrador;
 import br.cin.ufpe.manager.entity.Pessoa;
 import br.cin.ufpe.manager.interfaces.IRepositorio;
 import br.cin.ufpe.manager.util.FabricaEntityManager;
@@ -62,7 +63,7 @@ public class RepositorioPessoasBD implements IRepositorio<Pessoa> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Pessoa> listarAdministradores() {
+	public List<Administrador> listarAdministradores() {
 		return em.createQuery("SELECT a FROM Administrador a").getResultList();
 	}	
 

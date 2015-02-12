@@ -61,13 +61,13 @@ public class Principal {
 						
 						String valor = in.next();
 						//insere um objeto Administrador
-						if(valor.equals("A")){
+						if(valor.equalsIgnoreCase("A")){
 							inserirAdmin(in, controladorPrincipal);
-						} else if(valor.equals("U")){ //insere um objeto usuario
+						} else if(valor.equalsIgnoreCase("U")){ //insere um objeto usuario
 							inserirUsuario(in, controladorPrincipal);
-						} else if(valor.equals("M")){ //insere um objeto Midia
+						} else if(valor.equalsIgnoreCase("M")){ //insere um objeto Midia
 							inserirMidia(in, controladorPrincipal);
-						} else if(valor.equals("I")){ //insere um objeto Item
+						} else if(valor.equalsIgnoreCase("I")){ //insere um objeto Item
 							inserirItemMidia(in, controladorPrincipal);
 						} else {
 							System.out.println("Opção inválida.");
@@ -78,13 +78,13 @@ public class Principal {
 						String valor = in.next();
 						
 						//insere um objeto Administrador
-						if(valor.equals("A")){
+						if(valor.equalsIgnoreCase("A")){
 							removerAdmin(in, controladorPrincipal);
-						} else if(valor.equals("U")){ //insere um objeto usuario
+						} else if(valor.equalsIgnoreCase("U")){ //insere um objeto usuario
 							removerUsuario(in, controladorPrincipal);
-						} else if(valor.equals("M")){ //insere um objeto Midia
+						} else if(valor.equalsIgnoreCase("M")){ //insere um objeto Midia
 							removerMidia(in, controladorPrincipal);
-						} else if(valor.equals("I")){ //insere um objeto Item
+						} else if(valor.equalsIgnoreCase("I")){ //insere um objeto Item
 							removerItemMidia(in, controladorPrincipal);
 						} else {
 							System.out.println("Opção inválida.");
@@ -94,13 +94,13 @@ public class Principal {
 						imprimirMenuEntidade();
 						String valor = in.next();						
 						//atualizar um objeto Administrador
-						if(valor.equals("A")){
+						if(valor.equalsIgnoreCase("A")){
 							atualizarAdmin(in, controladorPrincipal);
-						} else if(valor.equals("U")){ //atualizar um objeto usuario
+						} else if(valor.equalsIgnoreCase("U")){ //atualizar um objeto usuario
 							atualizarUsuario(in, controladorPrincipal);
-						} else if(valor.equals("M")){ //atualizar um objeto Midia
+						} else if(valor.equalsIgnoreCase("M")){ //atualizar um objeto Midia
 							atualizarMidia(in, controladorPrincipal);
-						} else if(valor.equals("I")){ //atualizar um objeto Item
+						} else if(valor.equalsIgnoreCase("I")){ //atualizar um objeto Item
 							atualizarItemMidia(in, controladorPrincipal);
 						} else {
 							System.out.println("Opção inválida.");
@@ -110,13 +110,13 @@ public class Principal {
 						imprimirMenuEntidade();
 						String valor = in.next();
 						//listar Administradores
-						if(valor.equals("A")){
+						if(valor.equalsIgnoreCase("A")){
 							System.out.println(controladorPrincipal.getCadastroPessoa().listarAdministradores());
-						} else if(valor.equals("U")){ //listar Usuarios
+						} else if(valor.equalsIgnoreCase("U")){ //listar Usuarios
 							System.out.println(controladorPrincipal.getCadastroPessoa().listarUsuarios());
-						} else if(valor.equals("M")){ //listar Midias
+						} else if(valor.equalsIgnoreCase("M")){ //listar Midias
 							System.out.println(controladorPrincipal.getCadastroMidia().listar());
-						} else if(valor.equals("I")){ //listar Itens
+						} else if(valor.equalsIgnoreCase("I")){ //listar Itens
 							System.out.println(controladorPrincipal.getCadastroItens().listar());
 						} else {
 							System.out.println("Opção inválida.");
@@ -127,7 +127,7 @@ public class Principal {
 					}
 					
 					System.out.println("Deseja continuar? (S/N)");
-					podeContinuar = in.next().equals("S");
+					podeContinuar = in.next().equalsIgnoreCase("S");
 					
 				}catch(InputMismatchException ime){
 					System.out.println("Opção inválida!");

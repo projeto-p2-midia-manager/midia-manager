@@ -1,5 +1,8 @@
 package br.cin.ufpe.manager.persistence.vetor;
 
+import java.util.List;
+
+import br.cin.ufpe.manager.entity.Administrador;
 import br.cin.ufpe.manager.entity.Pessoa;
 import br.cin.ufpe.manager.exception.PessoaNaoEncontradaException;
 import br.cin.ufpe.manager.interfaces.IRepositorioVetor;
@@ -79,6 +82,16 @@ public class RepositorioPessoasVetor implements IRepositorioVetor<Pessoa> {
 			}
 		}
 		return -1;
+	}
+
+	public List<Administrador> listarAdministradores() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Pessoa> listarUsuarios() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -3,6 +3,7 @@ package br.cin.ufpe.manager.cadastro;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.cin.ufpe.manager.entity.Administrador;
 import br.cin.ufpe.manager.entity.Pessoa;
 import br.cin.ufpe.manager.entity.TipoRepositorio;
 import br.cin.ufpe.manager.exception.PessoaNaoEncontradaException;
@@ -144,15 +145,32 @@ public class CadastroPessoa {
 	 * @return coleção de usuarios
 	 */	
 	public List<Pessoa> listarUsuarios(){
-		return ((RepositorioManagerBD) this.repositorio).getRepositorioPessoasBD().listarUsuarios();
+		if(repositorio instanceof RepositorioManagerArquivo){
+			return ((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().listarUsuarios();
+		} else if(repositorio instanceof RepositorioManagerBD){
+			return ((RepositorioManagerBD) this.repositorio).getRepositorioPessoasBD().listarUsuarios();
+		} else if(repositorio instanceof RepositorioManagerLista){
+			return ((RepositorioManagerLista) this.repositorio).getRepositorioPessoasLista().listarUsuarios();
+		} else {
+			return ((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().listarUsuarios();
+		}				
 	}
 
 	/**
 	 * Lista uma coleção de Administradores cadastrados no repositorio adequado
 	 * @return coleção de administradores
 	 */	
-	public List<Pessoa> listarAdministradores(){
-		return ((RepositorioManagerBD) this.repositorio).getRepositorioPessoasBD().listarAdministradores();
+	public List<Administrador> listarAdministradores(){
+		if(repositorio instanceof RepositorioManagerArquivo){
+			return ((RepositorioManagerArquivo) this.repositorio).getRepositorioPessoasArquivo().listarAdministradores();
+		} else if(repositorio instanceof RepositorioManagerBD){
+			return ((RepositorioManagerBD) this.repositorio).getRepositorioPessoasBD().listarAdministradores();
+		} else if(repositorio instanceof RepositorioManagerLista){
+			return ((RepositorioManagerLista) this.repositorio).getRepositorioPessoasLista().listarAdministradores();
+		} else {
+			return ((RepositorioManagerVetor) this.repositorio).getRepositorioPessoasVetor().listarAdministradores();
+		}				
+		
 	}
 
 }
